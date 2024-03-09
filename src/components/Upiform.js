@@ -35,10 +35,8 @@ export default function Upiform(props) {
       })});
       if (!response.ok) { throw new Error("Failed to fetch"); }
         const json = await response.json()
-            // console.log(json);
             if (json.success){
               localStorage.setItem('token',json.authtoken);
-              // console.log("Data Added Successfully")
               setFormData({
                 type: "Cash In",
                 amount: "",
@@ -59,21 +57,20 @@ export default function Upiform(props) {
           setFormData({ ...FormData, [e.target.name]: e.target.value })
         }
      let stylesize={width:'385px', borderRadius:'8px', padding:'6px'}
+     let btnstyle={width:'380px'}
 
   return (
     <>
-    <div className="maincontainer">
-        <div className="leftcontainer">
+    <div className="maincontainer"><div className="leftcontainer">
             <img className="homelayoutimg" src={homelayout} alt="" />
         </div>
         <div className="rightcontainer">
             <div className="container mt-4" style={{color: props.mode ==='dark'?'white':'#042743'}}>
             <form  onSubmit={handleSubmit}  className="d-flex align-items-center flex-column" >
-                <div className="mb-1 mt-1" style={{width:'400px'}}>
+                <div className="media1 mb-1 mt-1" style={{width:'400px'}}>
                 <div className="p-3">
-                <label htmlFor="type" className={`form-label text-${props.mode ==='light'?'dark':'light'}`}>
-                    Type: &nbsp;
-                    <select name="type" id="type" className="mt-4" style={{width:'385px', borderRadius:'8px', padding:'6px'}} value={FormData.type} onChange={onchange}>
+                <label htmlFor="type" className={`form-label text-${props.mode ==='light'?'dark':'light'}`}>Type: &nbsp;
+                    <select name="type" id="type" className="selectmedia1 mt-4" style={{width:'385px', borderRadius:'8px', padding:'6px'}} value={FormData.type} onChange={onchange}>
                     <option value="Cash In" >Cash In</option>
                     <option value="Cash Out">Cash Out</option>
                     <option value="Payment">Payment</option>
@@ -81,57 +78,42 @@ export default function Upiform(props) {
                     <option value="Debit">Debit</option>
                     </select>
                 </label>
-                    </div>
-                </div>
-                <div className="mb-4"  style={stylesize}>
-                <div className="p-1">
-                <label htmlFor="amount" className={`form-label text-${props.mode ==='light'?'dark':'light'}`}>
-                    Amount:
-                </label>
-                <input type="number" className="form-control" id="amount" name="amount" style={{width:'385px', borderRadius:'8px', padding:'6px'}} value={FormData.amount}
+                </div></div>
+
+                <div className="media1 mb-4"  style={stylesize}><div className="p-1">
+                <label htmlFor="amount" className={`form-label text-${props.mode ==='light'?'dark':'light'}`}> Amount: </label>
+                <input type="number" className="selectmedia1 form-control" id="amount" name="amount" style={{width:'385px', borderRadius:'8px', padding:'6px'}} value={FormData.amount} onChange={onchange}/>
+                </div></div>
+                
+                <div className="media1 mt-4 mb-2" style={stylesize}><div className="p-1">
+                <label htmlFor="amount" className={`form-label text-${props.mode ==='light'?'dark':'light'}`}> Old Balance Org: </label>
+                
+                <input type="number" className="selectmedia1 form-control" id="oldbalanceorg" name="oldbalanceorg"  style={{width:'385px', borderRadius:'8px', padding:'6px'}} value={FormData.oldbalanceorg}
                       onChange={onchange}/>
+                </div></div>
+
+                <div className="media1 mt-4 mb-2" style={stylesize}><div className="p-1">
+                <label htmlFor="amount" className={`form-label text-${props.mode ==='light'?'dark':'light'}`}>New Balance Org:</label>
+
+                <input type="number" className="selectmedia1 form-control" id="newbalanceorg" name="newbalanceorg"  style={{width:'385px', borderRadius:'8px', padding:'6px'}} value={FormData.newbalanceorg} onChange={onchange}/>
+                </div></div>
+
+                <div className="media1 mt-4 mb-2" style={stylesize}><div className="p-1">
+                <label htmlFor="amount" className={`form-label text-${props.mode ==='light'?'dark':'light'}`}> Old Balance Destination: </label>
+
+                <input type="number" className="selectmedia1 form-control" id="oldbalancedestination" name="oldbalancedestination"  style={{width:'385px', borderRadius:'8px', padding:'6px'}} value={FormData.oldbalancedestination} onChange={onchange}/>
+                </div></div>
+
+                <div className="media1 mt-4 mb-2" style={stylesize}><div className="p-1">
+                <label htmlFor="amount" className={`form-label text-${props.mode ==='light'?'dark':'light'}`}>New Balance Destination:</label>
+
+                <input type="number" className="selectmedia1 form-control" id="newbalancedestination" name="newbalancedestination"  style={{width:'385px', borderRadius:'8px', padding:'6px'}} value={FormData.newbalancedestination} onChange={onchange}/>
+                </div></div>
+
+                <div className="media2 mt-5 mb-5"><div className="p-3">
+                <button type="submit" className="selectmedia2 btn btn-primary" style={{ width: '380px', ...btnstyle,}}> Submit </button>
                 </div>
-                </div>
-                <div className="mt-4 mb-2" style={stylesize}>
-                <div className="p-1">
-                <label htmlFor="amount" className={`form-label text-${props.mode ==='light'?'dark':'light'}`}>
-                    Old Balance Org:
-                </label>
-                <input type="number" className="form-control" id="oldbalanceorg" name="oldbalanceorg"  style={{width:'385px', borderRadius:'8px', padding:'6px'}} value={FormData.oldbalanceorg}
-                      onChange={onchange}/>
-                </div>
-                </div>
-                <div className="mt-4 mb-2" style={stylesize}>
-                <div className="p-1">
-                <label htmlFor="amount" className={`form-label text-${props.mode ==='light'?'dark':'light'}`}>
-                New Balance Org:
-                </label>
-                <input type="number" className="form-control" id="newbalanceorg" name="newbalanceorg"  style={{width:'385px', borderRadius:'8px', padding:'6px'}} value={FormData.newbalanceorg}
-                      onChange={onchange}/>
-                </div>
-                </div>
-                <div className="mt-4 mb-2" style={stylesize}>
-                <div className="p-1">
-                <label htmlFor="amount" className={`form-label text-${props.mode ==='light'?'dark':'light'}`}>
-                Old Balance Destination:
-                </label>
-                <input type="number" className="form-control" id="oldbalancedestination" name="oldbalancedestination"  style={{width:'385px', borderRadius:'8px', padding:'6px'}} value={FormData.oldbalancedestination}
-                      onChange={onchange}/>
-                </div>
-                </div>
-                <div className="mt-4 mb-2" style={stylesize}>
-                <div className="p-1">
-                <label htmlFor="amount" className={`form-label text-${props.mode ==='light'?'dark':'light'}`}>
-                New Balance Destination:
-                </label>
-                <input type="number" className="form-control" id="newbalancedestination" name="newbalancedestination"  style={{width:'385px', borderRadius:'8px', padding:'6px'}} value={FormData.newbalancedestination}
-                      onChange={onchange}/>
-                </div>
-                </div>
-                <div className="mt-5 mb-5">
-                <div className="p-3">
-                <button type="submit" className="btn btn-primary" style={{width:'380px'}}> Submit </button>
-                </div>
+
                 </div>
             </form>
             </div>

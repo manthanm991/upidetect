@@ -37,3 +37,47 @@ code {
   width: 80%;
   height: 600px;
 }
+
+@media screen and (max-width: 720px){
+  
+  .toastBody{
+      font-family: "Atlas Grotesk Web", Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+  }
+
+  .maincontainer{
+    display: block;
+  }
+
+  .leftcontainer{
+      width: auto;
+      margin-right: 20%;
+    
+  }
+  .rightcontainer {
+    width: auto;
+    margin-right: 10%;
+    margin-left: 0.5cm;
+  }
+
+  .homelayoutimg{
+  margin-top: 1.5cm;
+  margin-left: 1cm;
+  border-radius: 22px;
+  width: 100%;
+  height: 250px;
+}
+
+.media1{
+  width: 150px;
+}
+.media2{
+  width: 400px;
+}
+.selectmedia1{
+  width: 200px;
+}
+.selectmedia2{
+  width: 250px;
+}
+} 

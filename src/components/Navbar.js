@@ -19,12 +19,12 @@ export default function Navbar(props) {
                 <Link className="nav-link active" to="/about">About</Link>
               </li>
             </ul>
-          </div>
           <div className={`form-check form-switch text-${props.mode === "light" ? "dark" : "light"}`} >
             <svg className="moon  mt-2" width="46" height="30" onClick={props.toggleMode} style={{ cursor: "pointer" }} >
               <circle cx="11" cy="10" r="11" fill={props.mode === "light" ? "#042743" : "#f8f9fa"} />
               <circle cx="14" cy="8" r="9" fill={props.mode === "light" ? "#f8f9fa" : "#212529"} />
             </svg>
+          </div>
           </div>
         </div>
       </nav>

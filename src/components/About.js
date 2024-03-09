@@ -44,7 +44,11 @@ export default function About(props) {
         <div className="left">
             <ul className='temp'>
                 <li>Contact Us:</li>
-                <li>Email: {props.email}</li>
+                <li>Email: 
+                  <div className='emailadjust'>
+                    {props.email}
+                    </div>
+                    </li>
                 <li>Helpline No.: {props.helpline}</li>
             </ul>
         </div >
@@ -70,6 +74,6 @@ About.propTypes = {
 };
 
 About.defaultProps = {
-  email: "exampleupidetect@gmail.com",
+  email: "complaintupidetect@gmail.com",
   helpline: "1800-000-000",
 };
