@@ -18,7 +18,7 @@ export default function Upiform(props) {
 
 
   const fetchModuleData = async ()=>{
-    fetch('http://127.0.0.1:5000/get_boolean_value', { cache: 'no-cache' })
+    fetch('http://127.0.0.1:5000/gitBooleanValue', { cache: 'no-cache' })
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
