@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import homelayout from "./homelayout.png";
 import "I:/1WebD/upidetect/src/index.css";
@@ -11,24 +11,33 @@ import Spinner from "./Spinner";
 export default function Upiform(props) {
   let history = useNavigate();
 
-  const [data, setData] = useState(null); 
+  // const [data, setData] = useState(null);
+  const [booleanValue, setBooleanValue] = useState(null); 
 
   const [loading, setLoading] = useState(false);
 
 
-  useEffect(() => {
-    fetch('./output.json', { cache: 'no-cache' })
-      .then(response => response.json())
-      .then(data => setData(data))
-      .catch(error => console.error('Error fetching data:', error));
-  }, []);  
-  // const value = data ? data.boolean_output.toString() : true; 
-  // setData(data)
-  const showToast = () => {
-    if (data && data.boolean_output) {
+  const fetchModuleData = async ()=>{
+    fetch('http://127.0.0.1:5000/get_boolean_value', { cache: 'no-cache' })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data.boolean_value);
+      setBooleanValue(data.boolean_value);
+      showToast(data.boolean_value);
+    })
+    .catch(error => console.error('Error fetching data:', error));
+  };  
+
+  const showToast = (value) => {
+    if (value === true) {
       toast.success('Is Fraud!',{position :"top-center"});
     } else {
-      toast.error('Not a Fraud!');
+      toast.error('Not a Fraud!',{position :"top-center"});
     }
   }
  
@@ -45,7 +54,7 @@ export default function Upiform(props) {
     e.preventDefault();
     try {
       const response = await fetch(
-        "http://localhost:5000/api/formdata/dataip",
+        "http://localhost:8000/api/formdata/dataip",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -76,9 +85,9 @@ export default function Upiform(props) {
         history("/");
         setLoading(true);
         setTimeout(() => {
-          showToast();
+          fetchModuleData();
           setLoading(false);
-        }, 20000);
+        }, 3000);
       } else {
         toast.error("Invalid input of the data...");
       }
