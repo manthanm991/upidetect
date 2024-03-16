@@ -20,10 +20,8 @@ def predict():
         data['oldbalanceDest'],
         data['newbalanceDest']
     ]
-    #reshape features into a 2d array as expected by scikit learn 
+    
     features = [features]
-
-    #making predictions using the loaded model
 
     prediction = model.predict
 

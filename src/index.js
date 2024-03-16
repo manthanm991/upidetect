@@ -1,13 +1,12 @@
-import ReactDOM from 'react-dom/client';
+import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import './index.css';
-import Navbar from './components/Navbar';
-import About from './components/About';
-import Upiform from './components/Upiform';
-
+import "./index.css";
+import Navbar from "./components/Navbar";
+import About from "./components/About";
+import Upiform from "./components/Upiform";
 
 export default function App() {
   const [mode, setMode] = useState("light");
@@ -25,13 +24,23 @@ export default function App() {
   };
 
   return (
-      <BrowserRouter>
+    <BrowserRouter>
       <Routes>
         <Route
-         path="/"
-         element={<Navbar title="UPIDETECT" mode={mode} toggleMode={toggleMode} />}>
-          <Route index element={<Upiform mode={mode} toggleMode={toggleMode}/>} />
-          <Route exact path='about' element={<About mode={mode} toggleMode={toggleMode}/>} />
+          path="/"
+          element={
+            <Navbar title="UPIDETECT" mode={mode} toggleMode={toggleMode} />
+          }
+        >
+          <Route
+            index
+            element={<Upiform mode={mode} toggleMode={toggleMode} />}
+          />
+          <Route
+            exact
+            path="about"
+            element={<About mode={mode} toggleMode={toggleMode} />}
+          />
         </Route>
       </Routes>
       <ToastContainer
@@ -51,7 +60,6 @@ export default function App() {
     </BrowserRouter>
   );
 }
-
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);

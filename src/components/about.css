@@ -166,6 +166,19 @@ img{
     display: inline;
   }
 
+  .spinner-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    /* width: 10%;
+    height: 10%; */
+  }
+  .spinimg{
+    width: 50%;
+    height: 15rem;
+  }
 @media screen and (max-width: 720px){
   img{
     width: 100%;
