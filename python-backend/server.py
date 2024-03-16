@@ -1,46 +1,15 @@
 from flask import Flask,request,jsonify
-import pickle
+from Predictions import FraudPredictor
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
+fraudPredictor = FraudPredictor()
 
-# with open('UPIFraudDetectionModel.pkl','rb') as f:
-#     model = pickle.load(f)
-
-
-# @app.route('/predict',methods =['POST'])
-# def predict():
-#     data = request.json
-
-#     features = [
-#         data['type'],
-#         data['amount'],
-#         data['oldbalanceOrg'],
-#         data['newbalanceOrig'],
-#         data['oldbalanceDest'],
-#         data['newbalanceDest']
-#     ]
-    
-#     features = [features]
-
-#     prediction = model.predict
-
-#     return jsonify({'prediction': int(prediction[0])})
-
-boolGenerator = BooleanGenerator()
-
-
-
-@app.route('/gitBooleanValue',methods = ['GET'])
-def getBoolean():
-    result = boolGenerator.generate_boolean()
-
-    return jsonify({'boolean_value': result})
-
-
-
-    
-
+@app.route('/predictions', methods=['GET'])
+def get_predictions():
+    fraud_predictions = fraudPredictor.predict_fraud()
+    return jsonify(fraud_predictions)
 
 if __name__ == '__main__':
     app.run(debug=True)
