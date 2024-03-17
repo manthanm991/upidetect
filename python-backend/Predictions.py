@@ -3,7 +3,7 @@ from DatabaseInit import DBInit
 from CRUDOperations import DBOperations
 
 class FraudPredictor:
-    def __init__(self, model_path='UPIFraudDetectionModel.pkl'):
+    def __init__(self, model_path='python-backend/UPIFraudDetectionModel.pkl'):
         with open(model_path, 'rb') as f:
             self.model = pickle.load(f)
 
