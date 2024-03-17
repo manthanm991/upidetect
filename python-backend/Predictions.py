@@ -3,7 +3,7 @@ from DatabaseInit import DBInit
 from CRUDOperations import DBOperations
 
 class FraudPredictor:
-    def __init__(self, model_path='python-backend/UPIFraudDetectionModel.pkl'):
+    def __init__(self, model_path='UPIFraudDetectionModel.pkl'):
         with open(model_path, 'rb') as f:
             self.model = pickle.load(f)
 
@@ -11,20 +11,26 @@ class FraudPredictor:
         self.db_operations = DBOperations(self.db_init)
 
     def predict_fraud(self):
-        cursor = self.db_operations.collection.find()
-        results = []
+        latest_document = self.db_operations.collection.find_one(sort=[('_id', -1)])  # Assuming documents have an _id field
 
-        for document in cursor:
+        if latest_document:
             transaction_data = [
-                document['type'],
-                document['amount'],
-                document['oldbalanceorg'],
-                document['newbalanceorg'],
-                document['oldbalancedestination'],
-                document['newbalancedestination']
+                latest_document['type'],
+                latest_document['amount'],
+                latest_document['oldbalanceorg'],
+                latest_document['newbalanceorg'],
+                latest_document['oldbalancedestination'],
+                latest_document['newbalancedestination']
             ]
         
-            is_fraud = self.model.predict([transaction_data])[0]
-            results.append(bool(is_fraud))
+            transaction_data[0] = self.type_to_numeric(transaction_data[0])
 
-        return results
+            is_fraud = self.model.predict([transaction_data])[0]
+            
+            return [bool(is_fraud)]  
+        else:
+            return []  
+
+    def type_to_numeric(self, transaction_type):
+        mapping = {'CASH_OUT': 1, 'PAYMENT': 2, 'CASH_IN': 3, 'TRANSFER': 4, 'DEBIT': 5}
+        return mapping.get(transaction_type, 0)
