@@ -18,10 +18,10 @@ class FraudPredictor:
             transaction_data = [
                 document['type'],
                 document['amount'],
-                document['oldbalanceOrg'],
-                document['newbalanceOrg'],
-                document['oldbalanceDest'],
-                document['newbalanceDest']
+                document['oldbalanceorg'],
+                document['newbalanceorg'],
+                document['oldbalancedestination'],
+                document['newbalancedestination']
             ]
         
             is_fraud = self.model.predict([transaction_data])[0]
