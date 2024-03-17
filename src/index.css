@@ -16,6 +16,11 @@ code {
   font-family: "Atlas Grotesk Web", Arial, Helvetica, sans-serif;
   font-size: 1rem;
 }
+.custom-toast {
+  font-size: 3rem;
+  min-height: 60px;
+  font-size: 1.2rem;
+}
 
 .maincontainer {
   display: flex;

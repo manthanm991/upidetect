@@ -7,6 +7,8 @@ import "I:/1WebD/upidetect/src/components/about.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Spinner from "./Spinner";
+import PropTypes from "prop-types";
+
 
 export default function Upiform(props) {
   let history = useNavigate();
@@ -35,9 +37,9 @@ export default function Upiform(props) {
 
   const showToast = (value) => {
     if (value === true) {
-      toast.success('Is Fraud!',{position :"top-center"});
-    } else {
-      toast.error('Not a Fraud!',{position :"top-center"});
+      toast.success(props.successFraud,{position :"top-center", closeButton: false,autoClose:5000});
+    } else { 
+      toast.error(props.failureFraud,{position :"top-center", closeButton: false,autoClose:5000});
     }
   }
  
@@ -306,3 +308,14 @@ export default function Upiform(props) {
     </>
   );
 }
+
+
+Upiform.propTypes = {
+  successFraud: PropTypes.string.isRequired,
+  failureFraud: PropTypes.string.isRequired,
+};
+
+Upiform.defaultProps = {
+  successFraud: "Fraud Is Detected",
+  failureFraud: "Fraud Is Not Detected",
+};

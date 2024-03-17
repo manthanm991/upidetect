@@ -10,7 +10,7 @@ fraudPredictor = FraudPredictor()
 @app.route('/predictions', methods=['GET'])
 def get_predictions():
     fraud_predictions = fraudPredictor.predict_fraud()
-    return jsonify(fraud_predictions)
+    return jsonify({"boolean_value":fraud_predictions[0]})
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -3,7 +3,7 @@ from DatabaseInit import DBInit
 from CRUDOperations import DBOperations
 
 class FraudPredictor:
-    def __init__(self, model_path='UPIFraudDetectionModel.pkl'):
+    def __init__(self, model_path='python-backend/UPIFraudDetectionModel.pkl'):
         with open(model_path, 'rb') as f:
             self.model = pickle.load(f)
 
@@ -11,8 +11,7 @@ class FraudPredictor:
         self.db_operations = DBOperations(self.db_init)
 
     def predict_fraud(self):
-        latest_document = self.db_operations.collection.find_one(sort=[('_id', -1)])  # Assuming documents have an _id field
-
+        latest_document = self.db_operations.collection.find_one(sort=[('_id', -1)])
         if latest_document:
             transaction_data = [
                 latest_document['type'],
