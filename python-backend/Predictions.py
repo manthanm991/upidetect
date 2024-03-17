@@ -20,7 +20,7 @@ class FraudPredictor:
                 document['amount'],
                 document['oldbalanceorg'],
                 document['newbalanceorg'],
-                document['oldbalanceoestination'],
+                document['oldbalancedestination'],
                 document['newbalancedestination']
             ]
         
