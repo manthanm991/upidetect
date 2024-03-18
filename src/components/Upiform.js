@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import homelayout from "./homelayout.png";
-import "I:/1WebD/upidetect/src/index.css";
-import "I:/1WebD/upidetect/src/components/homelayout.png";
-import "I:/1WebD/upidetect/src/components/about.css";
+import homelayout from "./styles/homelayout.png";
+import "./styles/about.css";
+import "./styles/index.css";
+import "./styles/homelayout.png";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Spinner from "./Spinner";
@@ -12,8 +12,7 @@ import PropTypes from "prop-types";
 
 export default function Upiform(props) {
   let history = useNavigate();
-
-  // const [data, setData] = useState(null);
+  
   const [booleanValue, setBooleanValue] = useState(null); 
 
   const [loading, setLoading] = useState(false);

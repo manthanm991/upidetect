@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      image: frontend
+      stdin_open: true
+    ports:
+      - "3000:3000"
+
+  backend:
+    build:
+      image: backend
+    ports:
+      - "8000:8000"
+      - "27017:27017"
+    depends_on:
+      - mongo
+
+  python-backend:
+    build:
+      image: python-backend
+    ports:
+      - "5000:5000"
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"

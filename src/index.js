@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./index.css";
+import "./styles/index.css";
 import Navbar from "./components/Navbar";
 import About from "./components/About";
 import Upiform from "./components/Upiform";

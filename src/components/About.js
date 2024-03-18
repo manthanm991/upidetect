@@ -1,7 +1,7 @@
 import React from "react";
 import visionmission from "./visionmission.jpg";
-import "I:/1WebD/upidetect/src/index.css";
-import "I:/1WebD/upidetect/src/components/about.css";
+import "./styles/about.css";
+import "./styles/index.css";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
